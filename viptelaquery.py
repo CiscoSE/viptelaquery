@@ -172,14 +172,17 @@ def get_tunnel_statistic(serveraddress,session,systemip):
 print ("Viptela vManage Engine Starting...\n")
 
 # Open up the configuration file and get all application defaults
-config = configparser.ConfigParser()
-config.read('package_config.ini')
+try:
+    config = configparser.ConfigParser()
+    config.read('package_config.ini')
 
-serveraddress = config.get("application","serveraddress")
-username = config.get("application","username")
-password = config.get("application","password")
-systemip = config.get("application","systemip")
-
+    serveraddress = config.get("application","serveraddress")
+    username = config.get("application","username")
+    password = config.get("application","password")
+    systemip = config.get("application","systemip")
+except configparser.Error:
+    print ("Cannot Parse package_config.ini")
+    exit(-1)
 
 print ("Viptela Configuration:")
 print ("vManage Server Address: "+serveraddress)
