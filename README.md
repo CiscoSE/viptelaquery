@@ -3,12 +3,41 @@
 ## Description
 This is a very basic application to query the vManage application within a Cisco SD-WAN (Viptela) Infrastructure. The code supports several basic functions to login to the vManage and retrieve the data in different formats.
 
+The application actually does two functions.
+
+#### Returns All Inventory Data
+This section of the code will retrieve the inventory data of the vMange and return summary data of all devices in the network.   The data includes SystemIP, Hostname, Version of code, UUID and interfaces and statistics. 
+
+#### Returns Detailed Data on an individual vEdge
+The second part of the demo presents the detailed tunnel statistics on an individual vEdge.
+
 ## Function Descriptions
-This python script implemnents four basic functions that are described below:
+This python script implements four basic functions that are described below:
 * initalize_connection - Initializes a connection to the vManage server
 * get_inventory - Get an inventory dictionary that correlates the system-ip with the hostname
 * get_statistic - Return the interface statistics for each interface in each device
 * get_tunnel_statistic - For a given vEdge, return the statistics on all the tunnels that are defined on that device
+
+## Requirements and Prerequisites
+### package_config.ini
+The code uses a file called the package_config.ini to house the information about the vManage and the credentials that the application uses.     In the repository, there is a ```package_config.ini.sample``` that you should rename to ```package_config.ini```.   Then modify the package_config.ini to reflect the following information:
+* **serveraddress** - Represents the ip address of the vManage server
+* **username** -  username of the login credentials on the vManage server
+* **password** - password of the login credentials on the vManage server
+* **systemip** - systemip of a device that will be queried for detailed tunnel information
+
+### python
+This demo example is based on Python 3.6 and was tested successfully under that version.
+
+There are two main requirements for external libraries:
+* requests
+* configparser
+
+You can install these prerequisites by the following commands:
+```
+pip install requests
+pip install configparser
+```
 
 
 ## Example Output
