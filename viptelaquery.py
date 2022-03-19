@@ -109,7 +109,6 @@ def get_statistic(serveraddress,session):
             # Process though each interface and print out the data
             for stats in json_string['data']:
                 # We only want to print the ipv4 interfaces
-                print(stats)
                 if 'af-type' in stats.keys():
                   if stats['af-type']!='ipv6':
                       print('      {0:9}     {1:10}   {2:10d}      {3:10d}'.format(stats['ifname'],stats['vpn-id'],int(stats['tx-packets']),int(stats['rx-packets'])))
